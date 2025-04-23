@@ -1,0 +1,18 @@
+# public/.htaccess
+
+RewriteEngine On
+RewriteBase /
+
+# Redirect all requests to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# Optional: Set default charset
+AddDefaultCharset UTF-8
+
+# Optional: Protect sensitive files
+<FilesMatch "\.(env|htaccess|json|lock|md|gitignore)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>

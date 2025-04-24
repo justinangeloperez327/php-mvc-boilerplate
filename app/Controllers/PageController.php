@@ -2,16 +2,25 @@
 
 namespace App\Controllers;
 
+use App\Helpers\View;
+
 class PageController {
     public function home() {
-        require __DIR__ . '/../Views/home.php';
+        View::render('home', [
+            'title' => 'Welcome Home',
+            'message' => 'This is the homepage'
+        ]);
     }
 
     public function about() {
-        require __DIR__ . '/../Views/about.php';
+        View::render('about', [
+            'title' => 'About Us'
+        ]);
     }
 
     public function contact() {
-        require __DIR__ . '/../Views/contact.php';
+        View::render('contact', [
+            'title' => 'Contact Page'
+        ]);
     }
 }

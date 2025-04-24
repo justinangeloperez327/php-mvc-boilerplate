@@ -26,6 +26,7 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::FOUND:
         [$class, $method] = $routeInfo[1];
-        call_user_func_array([new $class, $method], []);
+        $params = $routeInfo[2];
+        call_user_func_array([new $class, $method], array_values($params));
         break;
 }

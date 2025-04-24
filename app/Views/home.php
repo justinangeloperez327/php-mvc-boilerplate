@@ -1,4 +1,5 @@
-<?php require __DIR__ . '/layouts/header.php'; ?>
-<h1>Welcome to Home Page</h1>
-<p>This is your homepage content.</p>
-<?php require __DIR__ . '/layouts/footer.php'; ?>
+<main class="container mx-auto p-4 min-h-screen bg-gray-100 text-gray-800 rounded-lg shadow-md mt-4">
+    <h1>Welcome to the Home Page</h1>
+    <p>This is a simple home page for our application.</p>
+    <p>Feel free to explore the features and functionalities we offer.</p>
+</main>

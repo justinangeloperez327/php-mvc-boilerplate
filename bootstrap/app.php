@@ -19,3 +19,26 @@ try {
     echo "Database connection failed: " . $e->getMessage();
     exit;
 }
+
+session_start();
+
+function auth()
+{
+    return $_SESSION['user'] ?? null;
+}
+
+function authenticated()
+{
+    if (!auth()) {
+        header('Location: /login');
+        exit;
+    }
+}
+
+function guest() 
+{
+    if (auth()) {
+        header('Location: /dashboard'); // or any other page
+        exit;
+    }
+}

@@ -27,8 +27,8 @@ class User
 
     public function create($data)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (name, email) VALUES (?, ?)");
-        return $stmt->execute([$data['name'], $data['email']]);
+        $stmt = $this->pdo->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+        return $stmt->execute([$data['name'], $data['email'], $data['password']]);
     }
 
     public function update($id, $data)
@@ -41,5 +41,12 @@ class User
     {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
         return $stmt->execute([$id]);
+    }
+
+    public function findByEmail($email)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

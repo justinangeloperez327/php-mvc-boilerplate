@@ -2,21 +2,22 @@
 
 namespace App\Helpers;
 
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
+
 class View
 {
-    public static function render(string $view, array $data = [])
+    public static function render(string $template, array $data = [])
     {
-        extract($data); // Convert array keys to variables
-        $viewPath = __DIR__ . '/../Views/' . $view . '.php';
+        static $twig = null;
 
-        if (!file_exists($viewPath)) {
-            http_response_code(500);
-            echo "View file not found: {$viewPath}";
-            exit;
+        if (!$twig) {
+            $loader = new FilesystemLoader(__DIR__ . '/../Views');
+            $twig = new Environment($loader, [
+                'cache' => false // set a path here if you want caching
+            ]);
         }
 
-        require __DIR__ . '/../Views/layouts/header.php';
-        require $viewPath;
-        require __DIR__ . '/../Views/layouts/footer.php';
+        echo $twig->render($template . '.twig', $data);
     }
 }

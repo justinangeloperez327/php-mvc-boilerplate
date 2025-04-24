@@ -23,4 +23,12 @@ class PageController {
             'title' => 'Contact Page'
         ]);
     }
+
+    public function dashboard() {
+        authenticated();
+        View::render('dashboard', [
+            'title' => 'Dashboard',
+            'message' => 'Welcome to your dashboard'
+        ]);
+    }
 }

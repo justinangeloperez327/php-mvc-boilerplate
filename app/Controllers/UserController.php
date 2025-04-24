@@ -9,6 +9,7 @@ class UserController
 {
     public function index()
     {
+        authenticated();
         $users = (new User())->all();
         View::render('users/index', compact('users'));
     }
